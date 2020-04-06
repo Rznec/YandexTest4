@@ -17,16 +17,18 @@ public class Translate extends WebDriverSettings{
     //Проверка работы перевода введенного текста
     @Test
     public void test() {
-        final Wait<WebDriver> wait = new WebDriverWait(driver, 15, 1);
+        final Wait<WebDriver> wait = new WebDriverWait(driver, 15, 20);
         
         driver.get("https://translate.yandex.ru/");
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        logger.info("\nThe page is open");
         
         WebElement element = driver.findElement(By.xpath("//*[@id=\"fakeArea\"]"));
         wait.until(ExpectedConditions.elementToBeClickable((element)));
-        element.click();
         element.sendKeys("Hello");
+        logger.info("\nThe text entered");
         element.sendKeys(Keys.ENTER);
+        logger.info("\nTranslation completed");
 
     }
 //    @Test
